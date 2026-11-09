@@ -11,18 +11,25 @@ import com.example.ssd_ai_playground.ui.form.FormViewModel
 import com.example.ssd_ai_playground.ui.list.ListViewModel
 
 object AppViewModelProvider {
-    val Factory = viewModelFactory {
+    val ListFactory: ViewModelProvider.Factory = viewModelFactory {
         initializer {
             ListViewModel(todoApplication().container.todoRepository)
         }
+    }
+
+    fun detailFactory(todoId: Long): ViewModelProvider.Factory = viewModelFactory {
         initializer {
             DetailViewModel(
-                savedStateHandle = createSavedStateHandle(),
+                todoId = todoId,
                 repository = todoApplication().container.todoRepository,
             )
         }
+    }
+
+    fun formFactory(todoId: Long? = null): ViewModelProvider.Factory = viewModelFactory {
         initializer {
             FormViewModel(
+                todoId = todoId,
                 savedStateHandle = createSavedStateHandle(),
                 repository = todoApplication().container.todoRepository,
             )

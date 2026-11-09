@@ -1,6 +1,5 @@
 package com.example.ssd_ai_playground.ui.detail
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ssd_ai_playground.data.TodoRepository
@@ -20,11 +19,9 @@ sealed interface DetailUiState {
 }
 
 class DetailViewModel(
-    savedStateHandle: SavedStateHandle,
+    private val todoId: Long,
     private val repository: TodoRepository,
 ) : ViewModel() {
-
-    private val todoId: Long = checkNotNull(savedStateHandle["todoId"])
 
     val uiState: StateFlow<DetailUiState> = repository.observeById(todoId)
         .map { todo ->

@@ -30,11 +30,11 @@ data class FormUiState(
 }
 
 class FormViewModel(
+    private val todoId: Long?,
     private val savedStateHandle: SavedStateHandle,
     private val repository: TodoRepository,
 ) : ViewModel() {
 
-    private val todoId: Long? = savedStateHandle.get<Long>("todoId")
     private val isEdit = todoId != null
 
     private val _uiState = MutableStateFlow(

@@ -26,8 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ssd_ai_playground.ui.AppViewModelProvider
 import com.example.ssd_ai_playground.ui.components.NotFoundContent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +33,7 @@ import com.example.ssd_ai_playground.ui.components.NotFoundContent
 fun FormScreen(
     onSaved: () -> Unit,
     onBack: () -> Unit,
-    viewModel: FormViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    viewModel: FormViewModel,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showDiscardDialog by rememberSaveable { mutableStateOf(false) }

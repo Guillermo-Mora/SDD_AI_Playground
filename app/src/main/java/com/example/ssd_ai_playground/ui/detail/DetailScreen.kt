@@ -31,9 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ssd_ai_playground.data.local.Todo
-import com.example.ssd_ai_playground.ui.AppViewModelProvider
 import com.example.ssd_ai_playground.ui.components.DeleteTodoDialog
 import com.example.ssd_ai_playground.ui.components.NotFoundContent
 import java.text.DateFormat
@@ -45,7 +43,7 @@ fun DetailScreen(
     onBack: () -> Unit,
     onEdit: (Long) -> Unit,
     onDeleted: () -> Unit,
-    viewModel: DetailViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    viewModel: DetailViewModel,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showDeleteDialog by rememberSaveable { mutableStateOf(false) }

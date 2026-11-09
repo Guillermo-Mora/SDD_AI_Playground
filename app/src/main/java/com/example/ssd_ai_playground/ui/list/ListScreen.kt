@@ -53,7 +53,7 @@ import com.example.ssd_ai_playground.ui.components.DeleteTodoDialog
 fun ListScreen(
     onOpenTodo: (Long) -> Unit,
     onCreateTodo: () -> Unit,
-    viewModel: ListViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    viewModel: ListViewModel = viewModel(factory = AppViewModelProvider.ListFactory),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var todoPendingDeleteId by rememberSaveable { mutableStateOf<Long?>(null) }
